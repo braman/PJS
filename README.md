@@ -16,5 +16,34 @@ How to implement this task? I don't know how to return response from HR part to 
 
 1. Start orb service: *orbd -ORBInitialPort 1050*
 2. Start server instances: ServerV, ServerAck, ServerHR
-3. Start client
+3. Run client: Client
+
+# Report
+
+## Design
+We've separated each process into separate idl file. Then we've generated java source file using standard built-into JDK tool:
+
+*idlj -fall IDL_FILE.idl* 
+
+We've implemented each server separately, and put them into _servers_ package. 
+
+Here is a simple scheme how the PJS works:
+
+```
+Client			Verifier			Acknowledger			HumanResources 
+  |	call verify(..)	| 					 |					 	  |
+  |---------------->|   call ack(..)	 |						  |	
+  |					|------------------->|	  call save(..)		  |
+  |					|				 	 |----------------------->|
+  | 				|				 	 |	return response		  |	
+  | 				|  return response	 |<-----------------------|	
+  | 				|<-------------------|						  |	
+  |     return		|					 |						  |	
+  |    response		|					 |						  |	
+  |<----------------|					 |						  |	
+  | 				|				     |						  |	
+```
+
+## Evaluation
+Modularity evaluation is very high, because we separated each process into separate _idl_ file and thus they don't depend on each other.  
 
