@@ -44,6 +44,8 @@ Client			Verifier			Acknowledger			HumanResources
   | 				|				     |						  |	
 ```
 
+As we can see from the above sequence diagram, the job/request is processed by a server and passed directly to the next one without any intermediary. 
+
 ## Evaluation
-Modularity evaluation is very high, because we separated each process into separate _idl_ file and thus they don't depend on each other.  
+Modularity evaluation is very high, because we separated each process into separate _idl_ file and thus they don't depend on each other and we can easily scale it, add additional functionality without loosing old ones.
 
