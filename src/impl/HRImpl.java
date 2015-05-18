@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import utils.JsonUtil;
 import common.ApplicationForm;
+import common.Codes;
 import common.Response;
 import ModuleHR.HumanResourcesPOA;
 
@@ -21,10 +22,10 @@ public class HRImpl extends HumanResourcesPOA {
 		
 		try {
 			saveToFile(fileName, appForm);
-			response = new Response(200, "OK");
+			response = Response.OK;
 			
 		} catch (FileNotFoundException e) {
-			response = new Response(400, "Failed to write save application form");
+			response = new Response(Codes.WRONG, "Failed to write save application form");
 		}
 		
 		return JsonUtil.toJSON(response);

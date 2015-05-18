@@ -2,6 +2,8 @@ package common;
 
 public class Response {
 	
+	public static final Response OK = new Response(Codes.OK, "OK");
+	
 	public int 	  code;
 	public String message;
 	

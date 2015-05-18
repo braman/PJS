@@ -11,6 +11,7 @@ import ModuleAck.Acknowledger;
 import ModuleAck.AcknowledgerHelper;
 import ModuleV.VerifierPOA;
 import common.ApplicationForm;
+import common.Codes;
 import common.Response;
 
 public class VerifierImpl extends VerifierPOA {
@@ -28,17 +29,25 @@ public class VerifierImpl extends VerifierPOA {
 			try {
 				return passFormForward(jsonApp);
 			} catch (Exception e) {
-				r = new Response(400, "Failed to pass to acknowledger");
+				r = new Response(Codes.WRONG, "Failed to pass to acknowledger");
 			}
 		} else {
-			r = new Response(400, "Invalid form");
+			r = new Response(Codes.WRONG, "Invalid form");
 		}		
 		
 		return JsonUtil.toJSON(r);
 	}
 
 	private boolean isFormValid(ApplicationForm form) {
-		return true;
+		boolean ok = form.iin != null && form.iin.length() == 12 && !form.iin.startsWith("0");
+		
+		try {
+			Long.parseLong(form.iin);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		
+		return ok;
 	}
 	
 	

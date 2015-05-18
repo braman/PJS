@@ -9,8 +9,8 @@ import utils.RemoteUtil;
 import ModuleAck.AcknowledgerPOA;
 import ModuleHR.HumanResources;
 import ModuleHR.HumanResourcesHelper;
-
 import common.ApplicationForm;
+import common.Codes;
 import common.Response;
 
 public class AcknoledgerImpl extends AcknowledgerPOA {
@@ -26,7 +26,7 @@ public class AcknoledgerImpl extends AcknowledgerPOA {
 		try {
 			return passFormForward(JsonUtil.toJSON(appForm));
 		} catch (Exception e) {
-			return JsonUtil.toJSON(new Response(400, "Failed to pass hr"));
+			return JsonUtil.toJSON(new Response(Codes.WRONG, "Failed to pass hr"));
 		}
 	}
 

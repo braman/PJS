@@ -1,3 +1,5 @@
+#Project Description
+
 Implement a simple pipelined job service (further PJS). 
 
 Client writes a very simple application form and put it to PJS. PJS consists of several individual processes that handles application in sequential order:
@@ -9,3 +11,10 @@ Client writes a very simple application form and put it to PJS. PJS consists of 
 There should be no intermediaries involved in the process of forwarding a job between servers: i.e. each server should pass the application directly to the next server. Stay focus on the system architecture and the process of passing applications around. Don’t implement complex data structures to represent application. It can be as simple as tiny json message.
 
 How to implement this task? I don't know how to return response from HR part to client directly, because client initially starts calling from Verifier.
+
+# How to run
+
+1. Start orb service: *orbd -ORBInitialPort 1050*
+2. Start server instances: ServerV, ServerAck, ServerHR
+3. Start client
+
