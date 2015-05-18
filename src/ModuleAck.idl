@@ -1,0 +1,7 @@
+module ModuleAck
+{
+  interface Acknowledger
+  {
+    string ackn(in string jsonApp);
+  };
+};

@@ -1,0 +1,7 @@
+module ModuleV
+{
+  interface Verifier
+  {
+    string verify(in string jsonApp);
+  };
+};

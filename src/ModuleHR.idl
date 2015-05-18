@@ -1,0 +1,7 @@
+module ModuleHR
+{
+  interface HumanResources
+  {
+    string save(in string jsonApp);
+  };
+};
